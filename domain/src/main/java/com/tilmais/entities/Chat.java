@@ -1,8 +1,10 @@
 package com.tilmais.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Chat {
+
   private final User fromUser;
   private final User toUser;
   private final List<Message> messages;
@@ -31,16 +33,18 @@ public class Chat {
     private User fromUser;
     private User toUser;
 
-    public void fromUser(final User user) {
+    public BuilderChat fromUser(final User user) {
       this.fromUser = user;
+      return this;
     }
 
-    public void toUser(final User user) {
+    public BuilderChat toUser(final User user) {
       this.toUser = user;
+      return this;
     }
 
     public BuilderChat withMessages(List<Message> messages) {
-      this.messages = messages;
+      this.messages = new ArrayList<>(messages);
       return this;
     }
 
