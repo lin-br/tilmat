@@ -30,23 +30,23 @@ public class Message {
     private User fromUser;
     private Chat chat;
 
-    public BuilderMessage fromChat(Chat chat) {
+    public BuilderMessage fromChat(final Chat chat) {
       this.chat = chat;
       return this;
     }
 
-    public BuilderMessage fromUser(User fromUser) {
+    public BuilderMessage fromUser(final User fromUser) {
       this.fromUser = fromUser;
       return this;
     }
 
-    public BuilderMessage withText(String text) {
+    public BuilderMessage withText(final String text) {
       this.text = text;
       return this;
     }
 
     public Message build() {
-      return new Message(chat, this.text, this.fromUser);
+      return new Message(this.chat, this.text, this.fromUser);
     }
   }
 

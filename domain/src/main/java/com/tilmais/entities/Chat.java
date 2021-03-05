@@ -1,8 +1,10 @@
 package com.tilmais.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Chat {
+
   private final User fromUser;
   private final User toUser;
   private final List<Message> messages;
@@ -40,7 +42,7 @@ public class Chat {
     }
 
     public BuilderChat withMessages(List<Message> messages) {
-      this.messages = messages;
+      this.messages = new ArrayList<>(messages);
       return this;
     }
 

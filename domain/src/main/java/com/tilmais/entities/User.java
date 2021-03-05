@@ -58,22 +58,22 @@ public class User {
     private String name;
     private String statusDescription;
 
-    public BuilderUser setCellPhone(String cellPhone) {
+    public BuilderUser setCellPhone(final String cellPhone) {
       this.cellPhone = cellPhone;
       return this;
     }
 
-    public BuilderUser setEmailAddress(String emailAddress) {
+    public BuilderUser setEmailAddress(final String emailAddress) {
       this.emailAddress = emailAddress;
       return this;
     }
 
-    public BuilderUser setName(String name) {
+    public BuilderUser setName(final String name) {
       this.name = name;
       return this;
     }
 
-    public BuilderUser setStatusDescription(String statusDescription) {
+    public BuilderUser setStatusDescription(final String statusDescription) {
       this.statusDescription = statusDescription;
       return this;
     }
