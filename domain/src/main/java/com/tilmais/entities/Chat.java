@@ -33,12 +33,14 @@ public class Chat {
     private User fromUser;
     private User toUser;
 
-    public void fromUser(final User user) {
+    public BuilderChat fromUser(final User user) {
       this.fromUser = user;
+      return this;
     }
 
-    public void toUser(final User user) {
+    public BuilderChat toUser(final User user) {
       this.toUser = user;
+      return this;
     }
 
     public BuilderChat withMessages(List<Message> messages) {
