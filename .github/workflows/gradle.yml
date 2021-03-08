@@ -1,4 +1,4 @@
-name: Tilmat workflow
+name: Workflow Tilmats
 
 on:
   push:
@@ -28,10 +28,6 @@ jobs:
             ${{ runner.os }}-gradle-
       - name: Build with Gradle
         run: ./gradlew build
-      - name: Cleanup Gradle Cache
-        run: |
-          rm -f ~/.gradle/caches/modules-2/modules-2.lock
-          rm -f ~/.gradle/caches/modules-2/gc.properties
   test:
     needs: build
     runs-on: ubuntu-latest
@@ -47,3 +43,7 @@ jobs:
         run: ./gradlew clean jacocoTestReport
       - name: Run to the coverage code
         run: bash <(curl -s https://codecov.io/bash)
+      - name: Cleanup Gradle Cache
+        run: |
+          rm -f ~/.gradle/caches/modules-2/modules-2.lock
+          rm -f ~/.gradle/caches/modules-2/gc.properties

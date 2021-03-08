@@ -1,0 +1,11 @@
+codecov:
+  token: ebb597f8-01ae-4eb6-bf36-b35e41b40b56
+  ci:
+    - github.com/features/actions
+coverage:
+  range: "90...100"
+ignore:
+  - ".github/*"
+  - "buildSrc/*"
+  - "*.gradle"
+  - "*.yml"
