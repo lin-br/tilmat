@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'jacoco'
 }
 
 repositories {
@@ -36,4 +37,21 @@ compileTestJava {
 
 test {
     useJUnitPlatform()
+}
+
+jacoco {
+    toolVersion = "0.8.6"
+    jacocoTestReport {
+        dependsOn test
+        description("Running JaCoCo reports")
+        sourceDirectories.from(files(subprojects.sourceSets.main.allSource.srcDirs))
+        classDirectories.from(files(subprojects.sourceSets.main.output))
+        executionData.from(files(subprojects.jacocoTestReport.executionData))
+        reports {
+            xml.enabled true
+            xml.destination file("${buildDir}/reports/jacoco/report.xml")
+            html.enabled true
+            csv.enabled false
+        }
+    }
 }
