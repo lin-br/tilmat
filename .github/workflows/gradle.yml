@@ -1,4 +1,4 @@
-name: Tilmat workflow
+name: Workflow Tilmats
 
 on:
   push:
