@@ -1,0 +1,39 @@
+name: Workflow Tilmats
+
+on:
+  push:
+    branches: [ master,develop ]
+  pull_request:
+    branches: [ master,develop ]
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Grant to gradle
+        run: chmod +x gradlew
+      - name: Cache Gradle packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - name: Run reports
+        run: ./gradlew clean jacocoTestReport
+      - name: Run to the coverage code
+        run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Java -r $GITHUB_WORKSPACE/domain/$JACOCO_REPORT_FILE_PATH --commit-uuid $GITHUB_SHA
+        env:
+          CODACY_PROJECT_TOKEN: 0c079f81809f4b93b4c61f4a79bfc8e9
+          JACOCO_REPORT_FILE_PATH: build/reports/jacoco/report.xml
+      - name: Cleanup Gradle Cache
+        run: |
+          rm -f ~/.gradle/caches/modules-2/modules-2.lock
+          rm -f ~/.gradle/caches/modules-2/gc.properties
