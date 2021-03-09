@@ -4,9 +4,7 @@ import com.tilmais.entities.User;
 import com.tilmais.repositories.UserRepository;
 import com.tilmais.usecases.validators.business.VoidEntityBusinessValidator;
 import com.tilmais.usecases.validators.exeptions.UserUpdaterException;
-import com.tilmais.usecases.validators.exeptions.UserValidationException;
 import com.tilmais.usecases.validators.exeptions.ValidationException;
-import java.util.Objects;
 
 public class UserUpdaterUseCase {
 
