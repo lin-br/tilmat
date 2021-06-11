@@ -186,7 +186,7 @@ class UserUpdaterUseCaseTest {
     var useCase = new UserUpdaterUseCase(this.userRepository, this.updateStatusValidator,
         this.updateNameValidator);
 
-    useCase.updateUserStatusDescription(this.user, this.user.getName());
+    useCase.updateUserName(this.user, this.user.getName());
 
     verify(this.userRepository, never()).updateUserName(any(User.class), anyString());
   }
