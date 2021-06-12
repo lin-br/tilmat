@@ -4,6 +4,10 @@ import com.tilmais.usecases.validators.exeptions.ValidationException;
 
 public abstract class AbstractValidationResult<T> {
 
+  protected T entity;
+  protected boolean isValid;
+  protected ValidationException validationException;
+
   protected AbstractValidationResult(T entity) {
     this.entity = entity;
     this.isValid = true;
@@ -14,10 +18,6 @@ public abstract class AbstractValidationResult<T> {
     this.isValid = false;
     this.validationException = validationException;
   }
-
-  protected T entity;
-  protected boolean isValid;
-  protected ValidationException validationException;
 
   public T orThrowsExceptionValidation() throws ValidationException {
     if (isValid) {

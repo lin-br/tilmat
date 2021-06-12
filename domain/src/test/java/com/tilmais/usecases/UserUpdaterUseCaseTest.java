@@ -2,6 +2,9 @@ package com.tilmais.usecases;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.only;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
@@ -164,5 +167,27 @@ class UserUpdaterUseCaseTest {
 
     assertEquals(UserUpdaterException.TEXT_USER_STATUS_IS_BIG, exception.getMessage());
     verifyNoInteractions(this.userRepository);
+  }
+
+  @Test
+  @DisplayName("Should do anything when the status to update is same from the user")
+  void shouldDoAnythingWhenTheStatusToUpdateIsSameFromTheUser() throws ValidationException {
+    var useCase = new UserUpdaterUseCase(this.userRepository, this.updateStatusValidator,
+        this.updateNameValidator);
+
+    useCase.updateUserStatusDescription(this.user, this.user.getStatusDescription());
+
+    verify(this.userRepository, never()).updateUserStatusDescription(any(User.class), anyString());
+  }
+
+  @Test
+  @DisplayName("Should do anything when the name to update is same from the user")
+  void shouldDoAnythingWhenTheNameToUpdateIsSameFromTheUser() throws ValidationException {
+    var useCase = new UserUpdaterUseCase(this.userRepository, this.updateStatusValidator,
+        this.updateNameValidator);
+
+    useCase.updateUserName(this.user, this.user.getName());
+
+    verify(this.userRepository, never()).updateUserName(any(User.class), anyString());
   }
 }
